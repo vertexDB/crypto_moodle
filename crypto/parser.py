@@ -1,5 +1,13 @@
 import openpyxl
 from utils.e_algorithm import EAlgorithm
+from crypto.external.blowfish import blowfish
+import crypto.external.des
+from crypto.external.kuznechik import kuznechik
+from crypto.external.gost import gost
+from crypto.external.md5 import md5
+from crypto.external.feistel import cipher
+from crypto.external.rc import rc
+from crypto.external.rsa import rsa
 # enum(type of algorithm) bytes
 # bytes -> openpyxl -> parse by enum type -> hash with args
 
@@ -15,6 +23,7 @@ def parser(e_alg, e_bytes): # e_alg - алгоритм, e_bytes - excel file
         case EAlgorithm.BLOWFISH:
             return True
         case EAlgorithm.MD5:
+            return True
             return True
         case EAlgorithm.KERBEROS:
             return True

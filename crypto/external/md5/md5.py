@@ -1,7 +1,7 @@
 # taken from https://github.com/qalle2/md5-algo
 # an MD5 implementation; see http://en.wikipedia.org/wiki/MD5
 
-import math, struct, sys
+import math, struct
 
 def pad_message(message):
     # append terminator byte, padding and original length in bits modulo
@@ -63,31 +63,3 @@ def md5(message):
 
     # final state = hash of entire message
     return struct.pack("<4I", *state)
-
-assert md5(b"").hex() == "d41d8cd98f00b204e9800998ecf8427e"
-assert md5(b"\x00").hex() == "93b885adfe0da089cdf634904fd59f71"
-assert md5(b"\xff").hex() == "00594fd4f42ba43fc1ca0427a0576295"
-assert md5(b"ximaz").hex() == "61529519452809720693702583126814"
-assert md5(b"cbaabcdljdac").hex() == "cadbfdfecdcdcdacdbbbfadbcccefabd"
-assert md5(55 * b"a").hex() == "ef1772b6dff9a122358552954ad0df65"
-assert md5(56 * b"a").hex() == "3b0c8ac703f828b04c6c197006d17218"
-assert md5(57 * b"a").hex() == "652b906d60af96844ebd21b674f35e93"
-assert md5(63 * b"a").hex() == "b06521f39153d618550606be297466d5"
-assert md5(64 * b"a").hex() == "014842d480b571495a4a0363793f7367"
-assert md5(65 * b"a").hex() == "c743a45e0d2e6a95cb859adae0248435"
-assert md5(bytes(range(256))).hex() == "e2c865db4162bed963bfaa9ef6ac18f0"
-assert md5(100 * b"abc").hex() == "f571117acbd8153c8dc3c81b8817773a"
-
-def main():
-    if len(sys.argv) != 2:
-        sys.exit(
-            "Compute the MD5 hash of a bytestring. Argument: bytestring in "
-            "hexadecimal"
-        )
-    try:
-        message = bytes.fromhex(sys.argv[1])
-    except ValueError:
-        sys.exit("Invalid hexadecimal bytestring.")
-    print(md5(message).hex())
-
-main()

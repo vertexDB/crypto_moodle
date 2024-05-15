@@ -5,7 +5,7 @@ import argparse
 from secrets import randbits
 from io import BytesIO
 import pickle
-import RC5
+import rc
 
 class Key:
     def __init__(self, key, blocksize, keysize, rounds):
